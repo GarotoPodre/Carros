@@ -8,5 +8,10 @@
 </head>
 <body>
 	Hello Everybody! ;)
+	<form action="<%=request.getContextPath()%>/hello" method="post">
+	Nome <input type="text" name="nome" />
+	Sobrenome <input type="text" name="sobrenome" />
+	<input type="submit" name="GO!">
+	</form>
 </body>
 </html>
