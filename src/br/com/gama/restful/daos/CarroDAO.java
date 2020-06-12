@@ -89,10 +89,12 @@ public class CarroDAO extends BaseDAO{
 		PreparedStatement stmt=null;
 		try {
 			conn=getConnection();
-			stmt=conn.prepareStatement("select *from carro");
+			System.out.println("Catalogo retornado :"+conn.getCatalog());
+			stmt=conn.prepareStatement("select * from carro");
 			ResultSet rs=stmt.executeQuery();
 			while(rs.next()) {
 				Carro c=createCarro(rs);
+				carros.add(c);
 			}
 			rs.close();
 		}finally {

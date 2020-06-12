@@ -1,4 +1,4 @@
-package br.com.gama.restful.servlet.teste;
+package br.com.gama.restful.servlet;
 
 import java.io.IOException;
 

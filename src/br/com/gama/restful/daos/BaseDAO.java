@@ -15,7 +15,10 @@ public class BaseDAO {
 		}
 	}
 	protected Connection getConnection() throws SQLException{
+		//String url="jdbc:mysql://localhost:/livro";
 		String url="jdbc:mysql://localhost/livro";
+		
+		/*O original é 'livro123', mas por o bd estar no windows do pc do Kaecilius, não é possível pôr essa senha fraca*/
 		Connection conn=DriverManager.getConnection(url, "livro","livro123");
 		return conn;
 	}
@@ -23,6 +26,6 @@ public class BaseDAO {
 	public static void main(String[] args) throws SQLException {
 		BaseDAO db=new BaseDAO();
 		Connection conn=db.getConnection();
-		System.out.println(conn);
+		System.out.println(conn.getCatalog());
 	}
 }

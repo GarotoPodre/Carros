@@ -13,6 +13,7 @@ public class CarroService {
 	public List<Carro> getCarros(){
 		try {
 			List<Carro> carros=db.getCarro();
+			System.out.println("Tamanho de carros "+carros.size());
 			return carros;
 		}catch(SQLException e) {
 			e.printStackTrace();
