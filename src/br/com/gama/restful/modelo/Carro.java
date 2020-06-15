@@ -2,10 +2,21 @@ package br.com.gama.restful.modelo;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+/**
+ * Toda classe que se deseja converter em XML pelo JAXB (Java Architecture for XML Binding)
+ * Necessita da anotação XmlRootElement
+ * @author azog
+ * 
+ * ::::OBSERVAÇÃO IMPORTATANTE::::
+ * O JAXB não consegue converter para XML uma lista do tipo ArrayList, no caso
+ * a lista de carros. Para resolver esse problema a lista deve ser encapsulada em um objeto do tipo
+ * wrapper, Listacarros
+ */
+@XmlRootElement
 public class Carro implements Serializable{
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private Long id;
 	private String tipo;
