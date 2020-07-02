@@ -123,35 +123,38 @@ public class CarroDAO extends BaseDAO{
 	}
 	
 	public void save(Carro c) throws SQLException{
+		System.out.println("CarrooDao - save "+c.toString());
 		Connection conn=null;
 		PreparedStatement stmt=null;
 		try {
 			conn=getConnection();
 			if(c.getId()==null) {
-				stmt=conn.prepareStatement("insert into carro(nome, desc, urlFoto, urlVideo,"
+				System.out.println("id é nulo");
+				stmt=conn.prepareStatement("insert into carro(nome, descricao, url_Foto, url_Video,"
 						+ " latitude, longitude, tipo) values(?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+				//System.out.println("id gerado "+i);
 			}else {
-				stmt=conn.prepareStatement("update carro set nome=?, desc=?, url_foto=?, url_video=?, "
-						+ "latitude=?, longitude=?, tipo=? where id=?");
+				stmt=conn.prepareStatement("update carro set nome=?, descricao=?, url_foto=?, url_video=?, latitude=?, longitude=?,tipo=? where id=?");
 			}
-			stmt.setString(1, c.getNome());
-			stmt.setString(1, c.getDescricao());
-			stmt.setString(1, c.getUrlFoto());
-			stmt.setString(1, c.getUrlVideo());
-			stmt.setString(1, c.getLatitude());
-			stmt.setString(1, c.getLongitude());
-			stmt.setString(1, c.getTipo());
-			if(c.getId()!=null) {
-				stmt.setLong(8, c.getId());
-			}
-			int count=stmt.executeUpdate();
-			if(count==0) {
-				throw new SQLException("Erro ao inserir o carro");
-			}
-			if(c.getId()==null) {
-				Long id=getGeneratedId(stmt);
-				c.setId(id);
-			}
+			//stmt.setLong(1, i+1);
+				stmt.setString(1, c.getNome());
+				stmt.setString(2, c.getDescricao());
+				stmt.setString(3, c.getUrlFoto());
+				stmt.setString(4, c.getUrlVideo());
+				stmt.setString(5, c.getLatitude());
+				stmt.setString(6, c.getLongitude());
+				stmt.setString(7, c.getTipo());
+				if(c.getId()!=null) {
+					stmt.setLong(8, c.getId());	
+				}
+				int cont=stmt.executeUpdate();
+				if(cont==0) {
+					throw new SQLException("Erro ao inserir Carro");
+				}
+				if(c.getId()==null) {
+					Long id=getGeneratedId(stmt);
+					c.setId(id);
+				}
 		}finally {
 			if(stmt !=null) {
 				stmt.close();
